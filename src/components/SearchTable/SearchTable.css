@@ -1,0 +1,21 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(92, 81, 81);
+    width: 200px;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 4px;
+}
+
+.searchInput {
+    border: none;
+    outline: none;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 13px;
+    width: 100%;
+}
+
+.searchIcon {
+    cursor: pointer;
+}

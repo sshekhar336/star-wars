@@ -1,0 +1,71 @@
+.actionPanel {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+}
+
+.loaderIcon {
+    font-size: 40px;
+    position: absolute;
+    top: 48%;
+    left: 48%;
+}
+
+.sortIcon {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.pageDisplay {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.changePageIcon {
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.page {
+    font-weight: bold;
+}
+
+.peopleTable, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.peopleTable {
+    width: 100%;
+}
+
+th, td {
+    /* width: calc(100%/16); */
+    text-align: center;
+    padding: 4px 4px;
+}
+
+td {
+    font-size: 13px;
+}
+
+th {
+    font-size: 15px;
+}
+
+thead {
+    position: sticky;
+    top: 46px;
+    background: rgb(218, 207, 207);
+    z-index: 99;
+}
+
+.peopleTable .thead::first-letter {
+    text-transform: capitalize;
+}
