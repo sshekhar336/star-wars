@@ -69,3 +69,12 @@ thead {
 .peopleTable .thead::first-letter {
     text-transform: capitalize;
 }
+
+.noData {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}

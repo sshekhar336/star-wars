@@ -8,12 +8,18 @@ export const getPeopleData = async (page, searchText = '') => {
                 data: res.results
             }
         })
+        .catch((err) => {
+            console.log("error: ", err);
+            peopleData = {
+                count: 0,
+                data: []
+            }
+        })
 
     return peopleData;
 }
 
 export const getNameFromUrl = (url) => {
-    // let name = '';
     return fetch(url)
         .then((response) => response.json())
         .then((res) => {
@@ -22,12 +28,6 @@ export const getNameFromUrl = (url) => {
         })
         .catch((err) => {
             console.log('Error: ', err);
+            return '';
         })
-    // return name;
 }
-
-// export const getSpecies = () => {
-//     let speciesData = null;
-//     fetch('https://swapi.dev/api/species/')
-//         .then
-// }

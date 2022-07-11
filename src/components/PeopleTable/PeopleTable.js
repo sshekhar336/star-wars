@@ -29,13 +29,16 @@ function PeopleTable() {
 
     useEffect(() => {
         if(peopleData && peopleData?.data[0]) {
+            setIsLoading(true)
             let headers = getTableHeaders(peopleData.data[0]);
             setTableHeaders(headers);
             let rowsDataPromises = peopleData?.data?.map(async data => await getRowsData(data));
             Promise.all(rowsDataPromises)
                 .then((rowValuesArray) => {
                     setPeopleDataRows(rowValuesArray);
-                    setIsLoading(false)
+                })
+                .finally(() => {
+                    setIsLoading(false);
                 })
         }
     }, [peopleData]);
@@ -100,26 +103,34 @@ function PeopleTable() {
         
             {isLoading && <span className="fa fa-spinner fa-pulse loaderIcon"></span>}
 
-            <table className='peopleTable'>
-                <thead>
-                    <tr>
+            {
+                (peopleData && peopleData?.data?.length > 0) ?
+                <table className='peopleTable'>
+                    <thead>
+                        <tr>
+                            {
+                                tableHeaders?.map((header, headerIndex) => <th className='thead' key={headerIndex}>{header}</th>)
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
                         {
-                            tableHeaders?.map((header, headerIndex) => <th className='thead' key={headerIndex}>{header}</th>)
+                            peopleDataRows?.map((rowdata, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {
+                                        rowdata?.map((row, dataIndex) => displayDataValues(row, dataIndex))
+                                    }
+                                </tr>
+                            ))
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        peopleDataRows?.map((rowdata, rowIndex) => (
-                            <tr key={rowIndex}>
-                                {
-                                    rowdata?.map((row, dataIndex) => displayDataValues(row, dataIndex))
-                                }
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table> :
+                peopleData?.data?.length === 0 ?
+                    <div className='noData'>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        <p>No data avaialble</p>
+                    </div>: <></>
+            }
         </>
     )
 }
